@@ -25,6 +25,7 @@
 
 const genDiff = require('../gendiff/gendiff');
 const path = require('path');
+const {test, expect} = require('jest')
 
 test('compare two flat JSON files', () => {
   const beforePath = path.join(__dirname, '__fixtures__', 'before.json');

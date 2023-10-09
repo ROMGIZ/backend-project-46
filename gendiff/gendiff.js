@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash'); // Предполагая, что вы используете lodash для работы с объектами.
 
-const genDiff = (filepath1, filepath2, format = 'default') => {
+const genDiff = (filepath1, filepath2) => {
     const file1Content = fs.readFileSync(path.resolve(filepath1), 'utf-8');
     const file2Content = fs.readFileSync(path.resolve(filepath2), 'utf-8');
 
