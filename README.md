@@ -1,2 +1,3 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ROMGIZ/backend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/ROMGIZ/backend-project-46/actions)
+[![Node.js Package](https://github.com/ROMGIZ/backend-project-46/actions/workflows/npm-publish-github-packages.yml/badge.svg)](https://github.com/ROMGIZ/backend-project-46/actions/workflows/npm-publish-github-packages.yml)
