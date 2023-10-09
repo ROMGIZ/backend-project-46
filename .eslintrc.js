@@ -17,5 +17,9 @@ module.exports = {
     "plugins": [
     ],
     "rules": {
-    }
+    },
+    "globals": {
+        test: 'readonly',
+        expect: 'readonly',
+      }
 }
