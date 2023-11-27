@@ -1,46 +1,35 @@
-// const genDiff = require('../gendiff');
+import fs from 'fs';
+import genDiff from '../src';
 
-// const fs = require('fs');
-// const path = require('path');
+const beforeJson = './__tests__/__fixtures__/before.json';
+const beforeYaml = './__tests__/__fixtures__/before.yml';
+const beforeIni = './__tests__/__fixtures__/before.ini';
+const afterJson = './__tests__/__fixtures__/after.json';
+const afterYaml = './__tests__/__fixtures__/after.yaml';
+const afterIni = './__tests__/__fixtures__/after.ini';
 
-// // Вспомогательная функция для чтения файлов
-// const readFile = (filename) => {
-//   const filepath = path.join(__dirname, '__fixtures__', filename);
-//   return fs.readFileSync(filepath, 'utf-8');
-// };
+const resultStylish = fs.readFileSync(
+  './__tests__/__fixtures__/exp-render-default.txt',
+  'utf8',
+);
+const resultPlain = fs.readFileSync(
+  './__tests__/__fixtures__/exp-render-plain.txt',
+  'utf8',
+);
+const resultJSON = JSON.stringify(
+  JSON.parse(
+    fs.readFileSync('./__tests__/__fixtures__/exp-render-json.json', 'utf8'),
+  ),
+);
 
-// test('compare two flat JSON files', () => {
-//   const beforeJSON = readFile('before.json');
-//   const afterJSON = readFile('after.json');
-
-//   const expectedDiff = '{\n' + 
-//                        '- key1: "value1"\n' + 
-//                        '+ key1: "new_value1"\n' + 
-//                        '+ key3: "value3"\n' + 
-//                        '- key2: "value2"\n' +
-//                        '}';
-
-//   expect(genDiff(beforeJSON, afterJSON)).toBe(expectedDiff);
-// });
-
-const genDiff = require('../gendiff/gendiff');
-const path = require('path');
-
-test('compare two flat JSON files', () => {
-  const beforePath = path.join(__dirname, '__fixtures__', 'before.json');
-  const afterPath = path.join(__dirname, '__fixtures__', 'after.json');
-
-  const expectedDiff = '{\n' + 
-                     '- age: 25\n' + 
-                     '+ age: 26\n' + 
-                     '- isStudent: true\n' + 
-                     '+ isStudent: false\n' +
-                     '- name: "John"\n' +
-                     '+ name: "John Doe"\n' +
-                     '}';
-
-
-  expect(genDiff(beforePath, afterPath)).toBe(expectedDiff);
+test('genDiff', () => {
+  expect(genDiff(beforeJson, afterJson)).toBe(resultStylish);
+  expect(genDiff(beforeJson, afterJson, 'plain')).toBe(resultPlain);
+  expect(genDiff(beforeJson, afterJson, 'json')).toBe(resultJSON);
+  expect(genDiff(beforeYaml, afterYaml)).toBe(resultStylish);
+  expect(genDiff(beforeYaml, afterYaml, 'plain')).toBe(resultPlain);
+  expect(genDiff(beforeYaml, afterYaml, 'json')).toBe(resultJSON);
+  expect(genDiff(beforeIni, afterIni)).toBe(resultStylish);
+  expect(genDiff(beforeIni, afterIni, 'plain')).toBe(resultPlain);
+  expect(genDiff(beforeIni, afterIni, 'json')).toBe(resultJSON);
 });
-
-
